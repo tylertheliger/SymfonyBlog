@@ -1,0 +1,7 @@
+parameters:
+#    bearwolf_user.example.class: Bearwolf\Bundle\UserBundle\Example
+
+services:
+#    bearwolf_user.example:
+#        class: %bearwolf_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

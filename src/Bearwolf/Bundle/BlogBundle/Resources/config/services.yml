@@ -1,0 +1,7 @@
+parameters:
+#    bearwolf_blog.example.class: Bearwolf\Bundle\BlogBundle\Example
+
+services:
+#    bearwolf_blog.example:
+#        class: %bearwolf_blog.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
