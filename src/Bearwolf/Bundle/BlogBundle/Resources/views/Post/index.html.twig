@@ -4,21 +4,35 @@
 {{ parent() }}
 
 <div class="container">
-    <div class="blog-header">
-        <h1 class="blog-title">The Bootstrap Blog </h1>
-        <p class="lead blog-description">My Blog</p>
+    <div class="row">
+     <div class="col-sm-8">
+      <div class="blog-header">
+        <h1 class="blog-title">Bearwolf's Blog </h1>
+        <p class="lead blog-description">Coding for everyone!</p>
+      </div>
+     </div>
+     <div class="col-sm-4">
+       <div class="blog-header">
+         <p> stuff goes here </p>
+       </div>
+     </div>
     </div>
     <div class="row">
     <div class="col-sm-8 blog-main">
-    {% for entity in entities %}
+    {% for entity in entities|reverse %}
           <div class="blog-post">
             <h2 class="blog-post-title">{{entity.title}}</h2>
             <p class="blog-post-meta">{{entity.createdDate |date('mm/d/y')}} <a href="#">User goes here soon</a></p>
 	    <p>{{entity.content|raw}}</p>
           </div>
+	  <div class="blog-tags">
+	    {% for tag in entity.tags.getValues %}
+	     {% if tag.id %} <a href="{{tag.id}}">{{ tag.name}}</a> {% endif %}
+	    {% endfor %}
+	  </div>
     {% endfor %}
     </div>
     {% include 'BearwolfBlogBundle:Post:sidebar.html.twig' %}
-    </div>
+    </di1v>
 </div>
 {% endblock %}

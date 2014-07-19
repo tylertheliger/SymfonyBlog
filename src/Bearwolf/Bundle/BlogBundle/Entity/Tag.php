@@ -29,9 +29,17 @@ class Tag
     public $name;
     
     public function addPost(Post $post)
-{
-    if (!$this->posts->contains($post)) {
+    {
+      if (!$this->posts->contains($post)) {
         $this->posts->add($post);
+      }
     }
-}
+
+    public function getId(){
+      return $this->id;
+    }
+
+    public function getName(){
+      return $this->name;
+    }
 }
