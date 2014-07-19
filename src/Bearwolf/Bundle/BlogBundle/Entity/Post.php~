@@ -1,0 +1,178 @@
+<?php
+
+namespace Bearwolf\Bundle\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Post
+ *
+ * @ORM\Table(name="Post")
+ * @ORM\Entity
+ */
+class Post
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=999, nullable=false)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=999, nullable=false)
+     */
+    private $description;
+
+     /**
+     * @var datetime
+     *
+     * @ORM\Column(name="createdDate", type="datetime", nullable=false)
+     */
+    private $createdDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="string", length=9999, nullable=false)
+     */
+    private $content;
+
+    /**
+	 * @ORM\ManyToMany(targetEntity="Tag", cascade={"persist"})
+	 */
+	protected $tags;
+
+    public function __construct() {
+      $this->tags = new ArrayCollection();
+    }
+   
+
+    /**;     * Set title
+     *
+     * @param string $title
+     * @return Post
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /** 
+     * Set createdDate
+     */
+    public function setCreatedDate($createdDate){
+      $this->createdDate = $createdDate;
+    }
+
+    /**
+     * Get createdDate
+     */
+    public function getCreatedDate(){
+      return $this->createdDate;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Post
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Post
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get tag
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+    
+    public function addTag(Tag $tag)
+    {
+        //$tag->addTag($this);
+
+		$this->tags->add($tag);
+    }
+
+    public function removeTag(Tag $tag)
+    {
+        $this->$tags->removeElement($tag);
+    }
+
+    
+}

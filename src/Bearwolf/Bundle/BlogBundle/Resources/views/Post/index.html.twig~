@@ -1,0 +1,24 @@
+{% extends 'BearwolfBlogBundle:Default:default.html.twig' %}
+
+{% block body -%}
+{{ parent() }}
+
+<div class="container">
+    <div class="blog-header">
+        <h1 class="blog-title">The Bootstrap Blog </h1>
+        <p class="lead blog-description">My Blog</p>
+    </div>
+    <div class="row">
+    <div class="col-sm-8 blog-main">
+    {% for entity in entities %}
+          <div class="blog-post">
+            <h2 class="blog-post-title">{{entity.title}}</h2>
+            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+	    <p>{{entity.content|raw}}</p>
+          </div>
+    {% endfor %}
+    </div>
+    {% include 'BearwolfBlogBundle:Post:sidebar.html.twig' %}
+    </div>
+</div>
+{% endblock %}

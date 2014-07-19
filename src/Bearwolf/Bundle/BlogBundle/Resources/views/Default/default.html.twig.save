@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+{% block head %}
+<head>
+
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+
+    <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+
+</head>
+{% endblock %}
+
+{% stylesheets '@BearwolfBlogBundle/Resources/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{asset_url}}" />
+{% endstylesheets %}
+
+{% block body %}
+<body>
+   {% include 'BearwolfBlogBundle:Default:nav.html.twig' %}
+    <div class="container">
+      <div class="blog-header">
+        <h1 class="blog-title">The Bootstrap Blog</h1>
+        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <h2 class="blog-post-title">Sample blog post</h2>
+            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+	  </div>
+       </div>  
+      </div><!-- /.blog-main -->
+
+    <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <!-- Include all JavaScripts, compiled by Assetic -->
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+</body>
+{% endblock %}
+</html>

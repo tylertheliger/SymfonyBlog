@@ -1,0 +1,70 @@
+<?php
+
+// src/Bearwolf/Bundle/BlogBundle/Form/DataTransformer/TagToStringTransformer.php
+namespace Bearwolf\Bundle\BlogBundle\Form\DataTransformer;
+
+use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
+use Doctrine\Common\Persistence\ObjectManager;
+use Bearwolf\Bundle\BlogBundle\Entity\Tag;
+
+class TagToStringTransformer implements DataTransformerInterface
+{
+    /**
+     * @var ObjectManager
+     */
+    private $om;
+
+    /**
+     * @param ObjectManager $om
+     */
+    public function __construct(ObjectManager $om)
+    {
+        $this->om = $om;
+    }
+
+    /**
+     * Transforms an object (issue) to a string (number).
+     *
+     * @param  Issue|null $issue
+     * @return string
+     */
+    public function transform($tag)
+    { 
+        if (null === $tag) {
+            return ""; 
+        }
+
+        return $tag->getContent();
+    }
+
+    /**
+     * Transforms a string (number) to an object (issue).
+     *
+     * @param  string $number
+     *
+     * @return Issue|null
+     *
+     * @throws TransformationFailedException if object (issue) is not found.
+     */
+    public function reverseTransform($string)
+    {
+        if (!$string) {
+            return null;
+        }
+
+        $tag = $this->om
+            ->getRepository('BearwolfBlogBundle:Tag')
+            ->findOneBy(array('content' => $string))
+        ;
+
+        if (null === $tag) {
+            throw new TransformationFailedException(sprintf(
+                'An tag with number "%s" does not exist!',
+                $string
+            ));
+        }
+
+        return $tag;
+    }
+}

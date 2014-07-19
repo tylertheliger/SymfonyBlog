@@ -1,0 +1,3 @@
+BearwolfBlogBundle_post:
+    resource: "@BearwolfBlogBundle/Resources/config/routing/post.yml"  
+    prefix: /post
